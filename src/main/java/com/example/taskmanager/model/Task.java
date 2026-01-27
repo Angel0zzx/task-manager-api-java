@@ -3,13 +3,16 @@ package com.example.taskmanager.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Document (collection = "tasks")
 public class Task {
 
     @Id
     private String id;
     private String title;
-    private boolean completed;
+    private LocalDate date;
+    private boolean completed = false;
 
     public Task() {
     }
@@ -43,4 +46,11 @@ public class Task {
         this.completed = completed;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }
