@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends MongoRepository<Task, String> {
     
-    List<Task> findByTitle(String title);
+    List<Task> findByTitleContainingIgnoreCase(String keyword);
 
     List<Task> findByDate(LocalDate date);
 
