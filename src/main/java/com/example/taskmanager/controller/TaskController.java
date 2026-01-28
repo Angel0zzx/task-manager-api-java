@@ -1,46 +1,37 @@
 package com.example.taskmanager.controller;
 
-import java.util.List;
 import com.example.taskmanager.model.Task;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.taskmanager.repository.TaskRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.taskmanager.service.TaskService;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
 
-public TaskController(TaskRepository taskRepository) {
-    this.taskRepository = taskRepository;
-}
-
-@GetMapping
-public List<Task> getAllTasks() {
-    return taskRepository.findAll();
-}
-
-@GetMapping ("/search")
-public List<Task> findByTitle(@RequestParam String title) {
-    return taskRepository.findByTitle(title);
-}
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
 
-@PostMapping
-public Task addNewTask(@RequestBody Task task) {
-    return taskRepository.save(task);
-}
+    @GetMapping
+    public List<Task> getAllTasks() {
+        return taskService.obtenerTodas(); 
+    }
 
+    
+    @GetMapping("/search")
+    public List<Task> searchByTitle(@RequestParam String keyword) {
+        return taskService.buscarPorTitulo(keyword); 
+    }
 
-
-
+    @PostMapping
+    public Task addNewTask(@RequestBody Task task) {
+        return taskService.crear(task); 
+    }
 
 }
