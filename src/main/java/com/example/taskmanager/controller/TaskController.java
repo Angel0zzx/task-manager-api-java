@@ -4,8 +4,8 @@ import com.example.taskmanager.model.Task;
 import com.example.taskmanager.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -17,21 +17,29 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.obtenerTodas(); 
+    public List<Task> GetAllTasks() {
+        return taskService.getAll();
     }
 
-    
     @GetMapping("/search")
-    public List<Task> searchByTitle(@RequestParam String keyword) {
-        return taskService.buscarPorTitulo(keyword); 
+    public List<Task> SearchByTitle(@RequestParam String keyword) {
+        return taskService.searchByTitle(keyword);
+    }
+
+    @GetMapping("/search/date")
+    public List<Task> SearchByDate(@RequestParam LocalDate date) {
+        return taskService.searchByDate(date);
+    }
+
+    @PutMapping("/{id}/status")
+    public Task UpdateStatus(@PathVariable String id) {
+        return taskService.updateStatus(id);
     }
 
     @PostMapping
-    public Task addNewTask(@RequestBody Task task) {
-        return taskService.crear(task); 
+    public Task AddNewTask(@RequestBody Task task) {
+        return taskService.CreateTask(task);
     }
 
 }
