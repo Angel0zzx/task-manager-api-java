@@ -1,33 +1,84 @@
 # Task Manager API
 
-> API REST para gestión de tareas desarrollada con Spring Boot y MongoDB
 
-## Stack Tecnológico
 
-- **Java** 21
-- **Spring Boot** 4.0
-- **MongoDB** 8.2
+![Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?logo=spring-boot)
+![MongoDB](https://img.shields.io/badge/MongoDB-latest-green?logo=mongodb)
+![Maven](https://img.shields.io/badge/Maven-3.6+-red?logo=apache-maven)
 
-## Configuración Inicial
 
-Crea el archivo `src/main/resources/application.properties`:
+> REST API built with Spring Boot and MongoDB to manage tasks.
 
-```properties
-spring.data.mongodb.uri=mongodb://localhost:27017/taskmanager
-```
+This project was created to practice backend development, clean architecture, and team collaboration using Git and GitHub.
 
-## Ejecutar el Proyecto
+## Tech Stack
 
-```bash
-mvn spring-boot:run
-```
+- **Java**
+- **Spring Boot**
+- **Spring Data MongoDB**
+- **MongoDB**
+- **Maven**
+- **Git & GitHub**
 
-La API estará disponible en `http://localhost:8080`
 
----
+## Project Architecture
+The project follows a layered architecture:
 
-<div align="center">
-  
-**Proyecto en desarrollo** | Práctica de Spring Boot y MongoDB
+Controller → Service → Repository → Database
 
-</div>
+- **Controller:** Handles HTTP requests and responses
+- **Service:** Contains business logic
+- **Repository:** Handles data persistence
+- **Model:** Represents domain entities
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|------|--------|------------|
+| GET | /api/tasks | Get all tasks |
+| POST | /api/tasks | Create a new task |
+| GET | /api/tasks/search?keyword= | Search tasks by keyword |
+| GET | /api/tasks/search/date?date= | Search tasks by date |
+| PUT | /api/tasks/{id}/status | Toggle task status |
+
+
+### Example JSON for creating a task
+
+{
+    "title": "Finish backend project",
+    "date": "2026-01-28"
+}
+
+## Features
+
+- Create tasks
+- List all tasks
+- Search tasks by title or date
+- Toggle task completion status
+- Automatic task date assignment
+
+## What we learned
+
+- Designing REST APIs
+- Backend layered architecture
+- Working with MongoDB
+- Separation of concerns
+- Team collaboration using Git branches
+- Problem-solving and decision-making in backend design
+
+
+
+
+## How to run the project
+
+1. Make sure MongoDB is running locally
+2. Clone the repository
+3. Run the Spring Boot application
+4. The API will be available at http://localhost:8080/api/tasks
+
+
+## Authors
+
+- GitHub: [Angel0zzx](https://github.com/Angel0zzx)
+- GitHub: [torgohd](https://github.com/torgohd-sketch)
