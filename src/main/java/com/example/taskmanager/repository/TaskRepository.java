@@ -14,6 +14,4 @@ public interface TaskRepository extends MongoRepository<Task, String> {
 
     List<Task> findByDate(LocalDate date);
 
-    List<Task> findByCompleted(boolean completed);
-
 }

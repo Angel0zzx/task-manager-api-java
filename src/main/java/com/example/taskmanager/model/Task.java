@@ -12,7 +12,7 @@ public class Task {
     private String id;
     private String title;
     private LocalDate date;
-    private boolean completed = false;
+    private boolean completed;
 
     public Task() {
     }
