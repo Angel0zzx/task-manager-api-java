@@ -1,11 +1,11 @@
 package com.example.taskmanager.service;
 
 import java.util.List;
+
 import com.example.taskmanager.model.Task;
 import com.example.taskmanager.repository.TaskRepository;
 import java.time.LocalDate;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class TaskService {
@@ -16,8 +16,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task crear(Task task) {
-
+    public Task CreateTask(Task task) {
         task.setCompleted(false);
         if (task.getDate() == null) {
             task.setDate(LocalDate.now());
@@ -25,11 +24,21 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> obtenerTodas() {
+    public List<Task> searchByDate(LocalDate date) {
+        return taskRepository.findByDate(date);
+    }
+
+    public Task updateStatus(String id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setCompleted(!task.isCompleted());
+        return taskRepository.save(task);
+    }
+
+    public List<Task> getAll() {
         return taskRepository.findAll();
     }
 
-    public List<Task> buscarPorTitulo(String keyword) {
+    public List<Task> searchByTitle(String keyword) {
         return taskRepository.findByTitleContainingIgnoreCase(keyword);
     }
 }
