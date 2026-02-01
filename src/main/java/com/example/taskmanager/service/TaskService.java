@@ -41,4 +41,10 @@ public class TaskService {
     public List<Task> searchByTitle(String keyword) {
         return taskRepository.findByTitleContainingIgnoreCase(keyword);
     }
+
+    public Task DeleteTask(String id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
+        taskRepository.delete(task);
+        return task;
+    }
 }
