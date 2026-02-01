@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/tasks")
 public class TaskController {
 
@@ -40,6 +41,11 @@ public class TaskController {
     @PostMapping
     public Task AddNewTask(@RequestBody Task task) {
         return taskService.CreateTask(task);
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public Task DeleteTask(@PathVariable String id) {
+        return taskService.DeleteTask(id);
     }
 
 }
